@@ -1,5 +1,5 @@
 local hsl = require('lush').hsl
-local theme = require('lush_theme.jellybeans')
+--local theme = require('lush_theme.jellybeans') -- 这行看上去会让这个 config 报错
 
 local foreground = hsl("#e8e8d3")
 local background = hsl("#151515")
