@@ -1,3 +1,4 @@
+-- https://www.reddit.com/r/neovim/comments/mkjyvq/hey_i_ported_jellybeans_to_lua_using_lushnvim/?utm_source=share&utm_medium=web2x&context=3
 local hsl = require('lush').hsl
 --local theme = require('lush_theme.jellybeans') -- 这行看上去会让这个 config 报错
 

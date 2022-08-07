@@ -1,47 +1,3 @@
---
--- Built with,
---
---        ,gggg,
---       d8" "8I                         ,dPYb,
---       88  ,dP                         IP'`Yb
---    8888888P"                          I8  8I
---       88                              I8  8'
---       88        gg      gg    ,g,     I8 dPgg,
---  ,aa,_88        I8      8I   ,8'8,    I8dP" "8I
--- dP" "88P        I8,    ,8I  ,8'  Yb   I8P    I8
--- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
---  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
---
-
--- This is a starter colorscheme for use with Lush,
--- for usage guides, see :h lush or :LushRunTutorial
-
---
--- Note: Because this is lua file, vim will append your file to the runtime,
---       which means you can require(...) it in other lua code (this is useful),
---       but you should also take care not to conflict with other libraries.
---
---       (This is a lua quirk, as it has somewhat poor support for namespacing.)
---
---       Basically, name your file,
---
---       "super_theme/lua/lush_theme/super_theme_dark.lua",
---
---       not,
---
---       "super_theme/lua/dark.lua".
---
---       With that caveat out of the way...
---
-
--- Enable lush.ify on this file, run:
---
---  `:Lushify`
---
---  or
---
---  `:lua require('lush').ify()`
-
 local lush = require('lush')
 local hsl = lush.hsl
 
@@ -94,6 +50,29 @@ local purple = hsl("#700089")
 local tea_green  =hsl("#d2ebbe")
 local dell = hsl("#437019")
 local calypso = hsl("#2B5B77")
+
+-- Mapping
+local fg = foreground
+local bg = background 
+local error = wewak
+local warning = koromiko
+local info = morning_glory
+local hint = brandy
+-- Syntax
+local syntax = {
+   comment = bayoux_blue,
+   constant = morning_glory,
+   variable = morning_glory,
+   string = perano,
+   keyword = wewak,
+   func = biloba_flower,
+   func_param = alto,
+   match_paren_bg = casal,
+   tag = tea_green,
+   html_arg = wewak,
+   param = raw_sienna,
+   json_label = morning_glory,
+}
 
 local theme = lush(function()
   return {
@@ -254,97 +233,138 @@ local theme = lush(function()
     -- LspDiagnosticsSignInformation        { }, -- Used for "Information" signs in sign column
     -- LspDiagnosticsSignHint               { }, -- Used for "Hint" signs in sign column
 
+
     -- These groups are for the neovim tree-sitter highlights.
     -- As of writing, tree-sitter support is a WIP, group names may change.
     -- By default, most of these groups link to an appropriate Vim group,
     -- TSError -> Error for example, so you do not have to define these unless
     -- you explicitly want to support Treesitter's improved syntax awareness.
 
-    -- TSAnnotation         { };    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
-    -- TSAttribute          { };    -- (unstable) TODO: docs
-    -- TSBoolean            { };    -- For booleans.
-    -- TSCharacter          { };    -- For characters.
-    -- TSComment            { };    -- For comment blocks.
-    -- TSConstructor        { };    -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
-    -- TSConditional        { };    -- For keywords related to conditionnals.
-    -- TSConstant           { };    -- For constants
-    -- TSConstBuiltin       { };    -- For constant that are built in the language: `nil` in Lua.
-    -- TSConstMacro         { };    -- For constants that are defined by macros: `NULL` in C.
-    -- TSError              { };    -- For syntax/parser errors.
-    -- TSException          { };    -- For exception related keywords.
-    -- TSField              { };    -- For fields.
-    -- TSFloat              { };    -- For floats.
-    -- TSFunction           { };    -- For function (calls and definitions).
-    -- TSFuncBuiltin        { };    -- For builtin functions: `table.insert` in Lua.
-    -- TSFuncMacro          { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    -- TSInclude            { };    -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    -- TSKeyword            { };    -- For keywords that don't fall in previous categories.
-    -- TSKeywordFunction    { };    -- For keywords used to define a fuction.
-    -- TSLabel              { };    -- For labels: `label:` in C and `:label:` in Lua.
-    -- TSMethod             { };    -- For method calls and definitions.
-    TSNamespace          { fg = wewak };    -- For identifiers referring to modules and namespaces.
-    -- TSNone               { };    -- TODO: docs
-    -- TSNumber             { };    -- For all numbers
-    -- TSOperator           { };    -- For any operator: `+`, but also `->` and `*` in C.
-    -- TSParameter          { };    -- For parameters of a function.
+    -- TSAnnotation        { };    -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
+    -- TSAttribute         { };    -- (unstable) TODO: docs
+    -- TSBoolean           { };    -- For booleans.
+    -- TSCharacter         { };    -- For characters.
+    -- TSComment           { };    -- For comment blocks.
+    TSNote { fg = bg, bg = info },
+    TSWarning { fg = bg, bg = warning },
+    TSDanger { fg = bg, bg = error },
+    TSConstructor { fg = syntax.variable }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+    -- TSConditional       { };    -- For keywords related to conditionnals.
+    TSConstant { fg = syntax.constant }, -- For constants
+    commentTSConstant { fg = syntax.keyword },
+    -- TSConstBuiltin      { };    -- For constant that are built in the language: `nil` in Lua.
+    -- TSConstMacro        { };    -- For constants that are defined by macros: `NULL` in C.
+    -- TSError             { };    -- For syntax/parser errors.
+    -- TSException         { };    -- For exception related keywords.
+    TSField { fg = fg }, -- For fields.
+    -- TSFloat             { };    -- For floats.
+    -- TSFunction          { };    -- For function (calls and definitions).
+    -- TSFuncBuiltin       { };    -- For builtin functions: `table.insert` in Lua.
+    -- TSFuncMacro         { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+    TSInclude { fg = syntax.keyword }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+    TSKeyword { fg = syntax.keyword, gui="italic" }, -- For keywords that don't fall in previous categories.
+    TSKeywordFunction { fg = syntax.keyword, gui="italic" }, -- For keywords used to define a fuction.
+    TSLabel { fg = perano }, -- For labels: `label:` in C and `:label:` in Lua.
+    -- TSMethod            { };    -- For method calls and definitions.
+    -- TSNone              { };    -- TODO: docs
+    -- TSNumber            { };    -- For all numbers
+    TSOperator { fg = syntax.keyword }, -- For any operator: `+`, but also `->` and `*` in C.
+    TSParameter { fg = syntax.func_param }, -- For parameters of a function.
     -- TSParameterReference { };    -- For references to parameters of a function.
-    -- TSProperty           { };    -- Same as `TSField`.
-    -- TSPunctDelimiter     { };    -- For delimiters ie: `.`
-    -- TSPunctBracket       { };    -- For brackets and parens.
-    -- TSPunctSpecial       { };    -- For special punctutation that does not fall in the catagories before.
-    -- TSRepeat             { };    -- For keywords related to loops.
-    -- TSString             { };    -- For strings.
-    -- TSStringRegex        { };    -- For regexes.
-    -- TSStringEscape       { };    -- For escape characters within a string.
-    -- TSSymbol             { };    -- For identifiers referring to symbols or atoms.
-    -- TSType               { };    -- For types.
-    -- TSTypeBuiltin        { };    -- For builtin types.
-    TSVariable           { Normal };    -- Any variable name that does not have another highlight.
-    -- TSVariableBuiltin    { };    -- Variable names that are defined by the languages, like `this` or `self`.
-
-    -- TSTag                { };    -- Tags like html tag names.
-    TSTagDelimiter       { fg = bayoux_blue };    -- Tag delimiter like `<` `>` `/`
-    -- TSText               { };    -- For strings considered text in a markup language.
-    TSEmphasis           { Italic };    -- For text to be represented with emphasis.
-    TSUnderline          { Underlined };    -- For text to be represented with an underline.
-    TSStrike             { gui="strikethrough" };    -- For strikethrough text.
-    -- TSTitle              { };    -- Text that is part of a title.
-    -- TSLiteral            { };    -- Literal text.
-    TSURI                { fg = morning_glory };    -- Any URI like a link or email.
+    TSProperty { fg = syntax.func }, -- Same as `TSField`.
+    TSPunctDelimiter { fg = fg }, -- For delimiters ie: `.`
+    TSPunctBracket { fg = fg }, -- For brackets and parens.
+    TSPunctSpecial { fg = fg }, -- For special punctutation that does not fall in the catagories before.
+    -- TSRepeat            { };    -- For keywords related to loops.
+    -- TSString            { };    -- For strings.
+    TSStringRegex { fg = syntax.variable }, -- For regexes.
+    TSStringEscape { fg = old_brick }, -- For escape characters within a string.
+    -- TSSymbol            { };    -- For identifiers referring to symbols or atoms.
+    TSType { fg = syntax.keyword }, -- For types.
+    -- TSTypeBuiltin       { };    -- For builtin types.
+    TSVariableBuiltin { fg = syntax.variable }, -- Variable names that are defined by the languages, like `this` or `self`.
+    TSTag { fg = syntax.tag }, -- Tags like html tag names.
+    -- TSText              { };    -- For strings considered text in a markup language.
+    TSTextReference { fg = old_brick }, -- FIXME
+    TSNamespace          { fg = wewak },    -- For identifiers referring to modules and namespaces.
+    TSVariable           { Normal, gui="NONE" };    -- Any variable name that does not have another highlight.
+    TSTagDelimiter       { fg = bayoux_blue },    -- Tag delimiter like `<` `>` `/`
+    TSEmphasis           { Italic },    -- For text to be represented with emphasis.
+    TSUnderline          { Underlined },    -- For text to be represented with an underline.
+    TSStrike             { gui="strikethrough" },    -- For strikethrough text.
+    TSURI                { fg = morning_glory },    -- Any URI like a link or email.
 
     -- HTML
-    htmlLink { };
+    htmlLink { },
 
     -- GitSigns
-    GitSignsAdd    { fg = mantis };
-    GitSignsChange { fg = koromiko };
-    GitSignsDelete { fg = old_brick.lighten(20) };
+    GitSignsAdd    { fg = mantis },
+    GitSignsChange { fg = koromiko },
+    GitSignsDelete { fg = old_brick.lighten(20) },
 
     -- Telescope
-    TelescopeBorder { fg = ship_cove };
-    TelescopeSelection { fg = ship_cove.lighten(46), bg = ship_cove.darken(74) };
-    TelescopeMatching { Search };
-    TelescopeSelectionCaret { fg = koromiko };
-    TelescopePromptPrefix { fg = koromiko };
+    TelescopeBorder { fg = ship_cove },
+    TelescopeSelection { fg = ship_cove.lighten(46), bg = ship_cove.darken(74) },
+    TelescopeMatching { Search },
+    TelescopeSelectionCaret { fg = koromiko },
+    TelescopePromptPrefix { fg = koromiko },
 
     -- vim-sneak
+    Sneak { Search },
 
-    Sneak { Search };
+    -- NeoVim
+    healthError { fg = wewak },
+    healthSuccess { fg = mantis },
+    healthWarning { fg = koromiko },
 
-    -- nvim-tree
+    -- LspSaga
+    DiagnosticError { fg = error },
+    DiagnosticWarning { fg = warning },
+    DiagnosticInformation { fg = info },
+    DiagnosticHint { fg = hint },
 
-    NvimTreeRootFolder       { Directory, gui = "bold" };
+    -- Git Default
+    gitcommitSummary { fg = mantis },
 
-    NvimTreeGitDirty   { GitSignsChange };
-    NvimTreeGitStaged  { fg = tea_green };
-    NvimTreeGitMerge   { GitSignsChange };
-    NvimTreeGitRenamed { GitSignsChange };
-    NvimTreeGitNew     { GitSignsAdd };
-    NvimTreeGitDeleted { GitSignsDelete };
+    -- default terminal git diff(not plugin)
+    diffAdded { fg = dell, bg = green_smoke },
+    diffChanged { fg = goldenrod, bg = temptress },
+    diffRemoved { fg = old_brick, bg = cocoa_brown },
+    diffOldFile { fg = goldenrod },
+    diffNewFile { fg = koromiko },
+    diffFile { fg = morning_glory },
+    diffLine { fg = bayoux_blue },
+    diffIndexLine { fg = biloba_flower },
+
+    -- typescript
+    typescriptTSType { fg = syntax.func },
+    typescriptTSConstructor { fg = syntax.func },
+    typescriptTSTypeBuiltin { fg = syntax.variable },
+
+    -- CSS
+    cssTSProperty { fg = syntax.func },
+    cssTSType { fg = syntax.tag },
+
+    -- html
+    htmlTSConstant { fg = syntax.tag },
+    htmlTag { fg = fg },
+    htmlEndTag { fg = fg },
+    htmlTagName { fg = syntax.tag },
+    htmlArg { fg = syntax.html_arg },
+
+    -- javascript
+    javascriptTSType { fg = fg },
+    javascriptTSParameter { fg = syntax.param },
+    javascriptTSVariable { fg = syntax.variable },
+    javascriptTSPunctDelimiter { fg = fg },
+    javascriptTSStringRegex { fg = syntax.string },
+    javascriptTSConstructor { fg = syntax.func },
+    javascriptTSProperty { fg = syntax.func },
+    regexTSStringEscape { fg = syntax.keyword },
+
   }
 end)
 
--- return our parsed theme for extension or use else where.
 return theme
 
 -- vi:nowrap
