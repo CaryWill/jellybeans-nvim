@@ -327,7 +327,7 @@ local theme = lush(function()
     gitcommitSummary { fg = mantis },
 
     -- default terminal git diff(not plugin)
-    diffAdded { fg = dell, bg = green_smoke },
+    diffAdded { fg = tea_green, bg = dell },
     diffChanged { fg = goldenrod, bg = temptress },
     diffRemoved { fg = old_brick, bg = cocoa_brown },
     diffOldFile { fg = goldenrod },
