@@ -112,10 +112,13 @@ local theme = lush(function()
     CursorColumn { bg = grey_one }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine   { bg = grey_one }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    { fg = brandy }, -- directory names (and other special names in listings)
-    DiffAdd      { fg = tea_green, bg = dell }, -- diff mode: Added line |diff.txt|
-    DiffChange   { fg = goldenrod, bg = temptress }, -- diff mode: Changed line |diff.txt|
-    DiffDelete   { fg = old_brick, bg = cocoa_brown }, -- diff mode: Deleted line |diff.txt|
-    DiffText     { fg = morning_glory, bg = total_black }, -- diff mode: Changed text within a changed line |diff.txt|
+
+    DiffAdd = { fg = github.add_fg, bg = github.add }, -- diff mode: Added line |diff.txt|
+    DiffChange = { fg = github.change_fg, bg = github.change }, -- diff mode: Changed line |diff.txt|
+    DiffDelete = { fg = github.delete_fg, bg = github.delete }, -- diff mode: Deleted line |diff.txt|
+    DiffText = { fg = github.gutter_fg }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffviewFilePanelFileName = { fg = github.fg_light },
+
     -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- cursor in a focused terminal
     -- TermCursorNC { }, -- cursor in an unfocused terminal
