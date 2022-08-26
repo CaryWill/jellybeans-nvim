@@ -74,6 +74,21 @@ local syntax = {
    json_label = morning_glory,
 }
 
+local github = {
+   add = hsl('#244032'),
+   add_fg = hsl('#56d364'),
+   change = hsl('#341a00'),
+   change_fg = hsl('#e3b341'),
+   delete = hsl('#462c32'),
+   delete_fg = hsl('#f85149'),
+   gutter_fg = hsl('#e1e4e8'),
+   fg_light = hsl('#d1d5da'),
+   yellow = hsl('#ffea7f'),
+   orange = hsl('#d18616'),
+   blue = hsl('#2188ff'),
+   magenta = hsl('#b392f0'),
+}
+
 local theme = lush(function()
   return {
     -- The following are all the Neovim default highlight groups from the docs
@@ -327,14 +342,14 @@ local theme = lush(function()
     gitcommitSummary { fg = mantis },
 
     -- default terminal git diff(not plugin)
-    diffAdded { fg = tea_green, bg = dell },
-    diffChanged { fg = goldenrod, bg = temptress },
-    diffRemoved { fg = old_brick, bg = cocoa_brown },
-    diffOldFile { fg = goldenrod },
-    diffNewFile { fg = koromiko },
-    diffFile { fg = morning_glory },
-    diffLine { fg = bayoux_blue },
-    diffIndexLine { fg = biloba_flower },
+    diffAdded { fg = github.add_fg, bg = github.add },
+    diffChanged { fg = github.change_fg, bg = github.change },
+    diffRemoved { fg = github.delete_fg , bg = github.delete },
+    diffOldFile { fg = github.yellow },
+    diffNewFile { fg = github.orange },
+    diffFile { fg = github.blue },
+    diffLine { fg = github.gutter_fg },
+    diffIndexLine { fg = github.magenta },
 
     -- typescript
     typescriptTSType { fg = syntax.func },
