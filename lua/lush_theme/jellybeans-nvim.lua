@@ -113,10 +113,10 @@ local theme = lush(function()
     CursorLine   { bg = grey_one }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    { fg = brandy }, -- directory names (and other special names in listings)
 
-    DiffAdd = { fg = github.add_fg, bg = github.add }, -- diff mode: Added line |diff.txt|
-    DiffChange = { fg = github.change_fg, bg = github.change }, -- diff mode: Changed line |diff.txt|
-    DiffDelete = { fg = github.delete_fg, bg = github.delete }, -- diff mode: Deleted line |diff.txt|
-    DiffText = { fg = github.gutter_fg }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd { fg = github.add_fg, bg = github.add }, -- diff mode: Added line |diff.txt|
+    DiffChange { fg = github.change_fg, bg = github.change }, -- diff mode: Changed line |diff.txt|
+    DiffDelete { fg = github.delete_fg, bg = github.delete }, -- diff mode: Deleted line |diff.txt|
+    DiffText { fg = github.gutter_fg }, -- diff mode: Changed text within a changed line |diff.txt|
     DiffviewFilePanelFileName = { fg = github.fg_light },
 
     -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
