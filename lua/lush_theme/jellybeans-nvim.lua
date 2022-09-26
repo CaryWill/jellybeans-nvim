@@ -131,7 +131,7 @@ local theme = lush(function()
     -- Substitute   { }, -- |:substitute| replacement text highlighting
     LineNr       { fg = zambezi }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     CursorLineNr { fg = silver_rust }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen   { fg = wewak, gui="bold" }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    MatchParen   { fg = wewak }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
@@ -141,7 +141,7 @@ local theme = lush(function()
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
     Pmenu        { fg = total_white, bg = background.lighten(4) }, -- Popup menu: normal item.
-    PmenuSel     { fg = total_black, bg = ship_cove, gui = "bold" }, -- Popup menu: selected item.
+    PmenuSel     { fg = total_black, bg = ship_cove }, -- Popup menu: selected item.
     -- PmenuSbar    { }, -- Popup menu: scrollbar.
     -- PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
     Question     { fg = mantis }, -- |hit-enter| prompt and yes/no questions
@@ -190,12 +190,12 @@ local theme = lush(function()
     -- Exception      { }, --  try, catch, throw
 
     PreProc        { fg = ship_cove }, -- (preferred) generic Preprocessor
-    Include        { PreProc, gui = "italic" }, --  preprocessor #include
+    Include        { PreProc }, --  preprocessor #include
     -- Define         { }, --   preprocessor #define
     -- Macro          { }, --    same as Define
     -- PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = koromiko, gui="italic" }, -- (preferred) int, long, char, etc.
+    Type           { fg = koromiko }, -- (preferred) int, long, char, etc.
     -- StorageClass   { }, -- static, register, volatile, etc.
     Structure      { fg = morning_glory }, --  struct, union, enum, etc.
     -- Typedef        { }, --  A typedef
@@ -207,9 +207,9 @@ local theme = lush(function()
     -- SpecialComment { }, -- special things inside a comment
     -- Debug          { }, --    debugging statements
 
-    Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
-    Bold       { gui = "bold" },
-    Italic     { gui = "italic" },
+    Underlined { }, -- (preferred) text that stands out, HTML links
+    Bold       { },
+    Italic     { },
 
     -- ("Ignore", below, may be invisible...)
     -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
@@ -236,10 +236,10 @@ local theme = lush(function()
     LspDiagnosticsVirtualTextInformation { LspDiagnosticsDefaultInformation, bg = perano.darken(87) }, -- Used for "Information" diagnostic virtual text
     LspDiagnosticsVirtualTextHint        { LspDiagnosticsDefaultHint, bg = tea_green.darken(90) }, -- Used for "Hint" diagnostic virtual text
 
-    LspDiagnosticsUnderlineError         { sp = old_brick.lighten(20), gui="undercurl" }, -- Used to underline "Error" diagnostics
-    LspDiagnosticsUnderlineWarning       { sp = koromiko, gui="undercurl" }, -- Used to underline "Warning" diagnostics
-    LspDiagnosticsUnderlineInformation   { sp = perano, gui="undercurl" }, -- Used to underline "Information" diagnostics
-    LspDiagnosticsUnderlineHint          { sp = tea_green, gui="undercurl" }, -- Used to underline "Hint" diagnostics
+    LspDiagnosticsUnderlineError         { sp = old_brick.lighten(20) }, -- Used to underline "Error" diagnostics
+    LspDiagnosticsUnderlineWarning       { sp = koromiko }, -- Used to underline "Warning" diagnostics
+    LspDiagnosticsUnderlineInformation   { sp = perano }, -- Used to underline "Information" diagnostics
+    LspDiagnosticsUnderlineHint          { sp = tea_green }, -- Used to underline "Hint" diagnostics
 
     -- LspDiagnosticsFloatingError          { }, -- Used to color "Error" diagnostic messages in diagnostics float
     -- LspDiagnosticsFloatingWarning        { }, -- Used to color "Warning" diagnostic messages in diagnostics float
@@ -280,8 +280,8 @@ local theme = lush(function()
     -- TSFuncBuiltin       { };    -- For builtin functions: `table.insert` in Lua.
     -- TSFuncMacro         { };    -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
     TSInclude { fg = syntax.keyword }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    TSKeyword { fg = syntax.keyword, gui="italic" }, -- For keywords that don't fall in previous categories.
-    TSKeywordFunction { fg = syntax.keyword, gui="italic" }, -- For keywords used to define a fuction.
+    TSKeyword { fg = syntax.keyword }, -- For keywords that don't fall in previous categories.
+    TSKeywordFunction { fg = syntax.keyword }, -- For keywords used to define a fuction.
     TSLabel { fg = perano }, -- For labels: `label:` in C and `:label:` in Lua.
     -- TSMethod            { };    -- For method calls and definitions.
     -- TSNone              { };    -- TODO: docs
@@ -305,11 +305,11 @@ local theme = lush(function()
     -- TSText              { };    -- For strings considered text in a markup language.
     TSTextReference { fg = old_brick }, -- FIXME
     TSNamespace          { fg = wewak },    -- For identifiers referring to modules and namespaces.
-    TSVariable           { Normal, gui="NONE" };    -- Any variable name that does not have another highlight.
+    TSVariable           { Normal };    -- Any variable name that does not have another highlight.
     TSTagDelimiter       { fg = bayoux_blue },    -- Tag delimiter like `<` `>` `/`
-    TSEmphasis           { Italic },    -- For text to be represented with emphasis.
-    TSUnderline          { Underlined },    -- For text to be represented with an underline.
-    TSStrike             { gui="strikethrough" },    -- For strikethrough text.
+    TSEmphasis           { },    -- For text to be represented with emphasis.
+    TSUnderline          { },    -- For text to be represented with an underline.
+    TSStrike             { },    -- For strikethrough text.
     TSURI                { fg = morning_glory },    -- Any URI like a link or email.
 
     -- HTML
